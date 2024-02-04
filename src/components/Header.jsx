@@ -1,17 +1,16 @@
-import styles from './Header.module.css'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 function Header() {
 
     return (
-        <header className={styles.header}>
-            <div className={styles.container}>
-                <h1 className={styles.title}>
-                    <a href="/" className={styles.link}>
-                        Boathouse Manager
-                    </a>
-                </h1>
-            </div>
-        </header>
+        <Navbar expand="lg" className="bg-body-tertiary" sticky='top' data-bs-theme="dark">
+            <Container>
+                <Navbar.Brand>Boathouse Manager</Navbar.Brand>
+                <Nav className="me-auto">
+                    <Nav.Link href="">Boats</Nav.Link>
+                </Nav>
+            </Container>
+        </Navbar>
     );
 }
 
