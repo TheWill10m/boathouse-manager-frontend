@@ -1,3 +1,4 @@
+import BoatCard from './components/BoatCard.jsx'
 import Header from './components/Header.jsx'
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
   return (
     <>
       <Header />
+      <BoatCard />
     </>
   )
 }
