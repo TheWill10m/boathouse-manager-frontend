@@ -27,7 +27,7 @@ function BoatCard(props) {
 }
 
 
-BoatCard.PropTypes = {
+BoatCard.propTypes = {
     name: PropTypes.string,
     type: PropTypes.string,
     inService: PropTypes.bool,
