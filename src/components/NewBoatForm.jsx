@@ -1,13 +1,17 @@
+import { BoatContext } from '../App.jsx';
 import { Button, Container, Form, InputGroup } from 'react-bootstrap';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 function NewBoatForm() {
 
     const isCoxedDefault = true;
     const inServiceDefault = true;
 
+    const { boatList, setBoatList } = useContext(BoatContext)
+
     const [isCoxed, setIsCoxed] = useState(isCoxedDefault)
     const [inService, setInService] = useState(inServiceDefault)
+    const [newBoatName, setNewBoatName] = useState('')
 
     function handleIsCoxedChange(event) {
         setIsCoxed(event.target.checked)
@@ -17,8 +21,12 @@ function NewBoatForm() {
         setInService(event.target.checked)
     }
 
-    function handleSubmit(event) {
-
+    function handleSubmit() {
+        const newBoat = {
+            name: newBoatName,
+        }
+        console.log(newBoat)
+        setBoatList(b => [...b, newBoat])
     }
 
     function getBoatTypes() {
@@ -32,7 +40,7 @@ function NewBoatForm() {
                 <Form.Label><h3>Add a new boat</h3></Form.Label>
                 <InputGroup>
                     <InputGroup.Text>Boat name</InputGroup.Text>
-                    <Form.Control type='text' placeholder='Enter boat name' />
+                    <Form.Control type='text' placeholder='Enter boat name' value={newBoatName} onChange={(event) => setNewBoatName(event.target.value)} />
                 </InputGroup>
 
                 <Form.Group controlId='formCoxed' style={{ marginTop: '5px' }}>
@@ -54,7 +62,7 @@ function NewBoatForm() {
                     <Form.Check type='checkbox' id='inService' label='In service' checked={inService} onChange={handleInServiceChange} />
                 </Form.Group>
 
-                <Button variant='primary' onSubmit={handleSubmit} style={{ margin: '5px' }}>
+                <Button variant='primary' onClick={handleSubmit} style={{ margin: '5px' }}>
                     Submit
                 </Button>
             </Form >
