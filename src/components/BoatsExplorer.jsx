@@ -1,9 +1,11 @@
 import BoatCard from './BoatCard.jsx';
 import styles from './BoatsExplorer.module.css';
+import { useContext } from 'react';
+import { BoatContext } from '../App.jsx';
 
 function BoatsExplorer() {
 
-    let boatList = ["1", "2", "3", "4", "5", "6"];
+    const boatList = useContext(BoatContext).boatList;
 
     return (
         <div className={styles.main}>
@@ -16,7 +18,7 @@ function BoatsExplorer() {
 
 function BoatCards({ boats }) {
     let boatCards = boats.map((boat, index) =>
-        <BoatCard key={index} name={boat} />
+        <BoatCard key={index} listId={index} name={boat.name} />
     );
 
     return boatCards;
