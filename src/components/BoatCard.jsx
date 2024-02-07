@@ -5,11 +5,16 @@ import { useContext } from 'react';
 
 function BoatCard(props) {
 
-    const { boatList, setBoatList } = useContext(BoatContext);
+    const { boatList, setBoatList, setEditorOpen, setEditorListId } = useContext(BoatContext);
 
     function deleteBoat(index) {
         const updatedBoatList = boatList.filter((_, i) => i !== index)
         setBoatList(updatedBoatList);
+    }
+
+    function openEditor() {
+        setEditorListId(props.listId);
+        setEditorOpen(true);
     }
 
     return (
@@ -23,7 +28,7 @@ function BoatCard(props) {
                 <Container>
                     <Row>
                         <Col>
-                            <Button variant='outline-primary'>Edit</Button>
+                            <Button variant='outline-primary' onClick={() => openEditor()}>Edit</Button>
                         </Col>
                         <Col>
                             <Button
