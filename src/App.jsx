@@ -1,3 +1,4 @@
+import BoatEditor from './components/BoatEditor.jsx'
 import BoatsExplorer from './components/BoatsExplorer.jsx'
 import Header from './components/Header.jsx'
 import NewBoatForm from './components/NewBoatForm.jsx'
@@ -18,7 +19,14 @@ function App() {
       name: "3"
     }
   ])
-  const context = { boatList, setBoatList };
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [editorListId, setEditorListId] = useState(0);
+
+  const context = {
+    boatList, setBoatList,
+    editorOpen, setEditorOpen,
+    editorListId, setEditorListId
+  };
 
   return (
     <>
@@ -26,6 +34,7 @@ function App() {
 
       <BoatContext.Provider value={context}>
         <NewBoatForm />
+        <BoatEditor />
         <BoatsExplorer />
       </BoatContext.Provider>
     </>

@@ -4,14 +4,15 @@ import { useContext } from 'react';
 import * as formik from 'formik';
 import * as yup from 'yup';
 
-function BoatEditor(props) {
+function BoatEditor() {
     const { Formik } = formik;
     const schema = yup.object().shape({
         name: yup.string().required(),
     })
 
-    const { boatList, setBoatList } = useContext(BoatContext);
-    const boat = boatList[props.listId];
+    const { boatList, setBoatList, editorOpen, setEditorOpen, editorListId } = useContext(BoatContext);
+    const boat = boatList[editorListId];
+    const handleClose = () => setEditorOpen(false);
 
     function getBoatTypes(isCoxed) {
         let boatTypes = isCoxed ? ['2+', '4+', '8x+', '8+'] : ['1x', '2x', '2-', '4x', '4-']
@@ -20,7 +21,7 @@ function BoatEditor(props) {
 
     function saveBoatChanges(values) {
         const updatedBoatList = [...boatList];
-        updatedBoatList[props.listId] = {
+        updatedBoatList[editorListId] = {
             name: values.name,
             isCoxed: values.isCoxed,
             boatType: values.boatType,
@@ -31,14 +32,17 @@ function BoatEditor(props) {
     }
 
     return (
-        <Modal show={true}>
+        <Modal show={editorOpen} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Edit Boat</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Formik
                     validationSchema={schema}
-                    onSubmit={values => saveBoatChanges(values)}
+                    onSubmit={values => {
+                        saveBoatChanges(values);
+                        setEditorOpen(false)
+                    }}
                     initialValues={{
                         name: boat.name,
                         isCoxed: false,
