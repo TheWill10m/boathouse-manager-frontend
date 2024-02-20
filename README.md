@@ -12,6 +12,8 @@ This web application was created as a way for me to demonstrate my current knowl
 
 ## Not implemented features
 - Integration with API backend
+- Instruction for running Docker container
+- Example docker-compose file
 
 ---
 
