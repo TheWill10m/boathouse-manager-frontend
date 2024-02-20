@@ -1,5 +1,5 @@
 import BoatCard from './BoatCard.jsx';
-import styles from './BoatsExplorer.module.css';
+import { Container, ListGroup } from 'react-bootstrap';
 import { useContext } from 'react';
 import { BoatContext } from '../App.jsx';
 
@@ -8,11 +8,11 @@ function BoatsExplorer() {
     const boatList = useContext(BoatContext).boatList;
 
     return (
-        <div className={styles.main}>
-            <div className={styles.container}>
+        <Container style={{ width: '60%' }}>
+            <ListGroup style={{ padding: '10px', marginTop: '1%', marginBottom: '5px' }}>
                 <BoatCards boats={boatList} />
-            </div>
-        </div>
+            </ListGroup>
+        </Container>
     );
 }
 

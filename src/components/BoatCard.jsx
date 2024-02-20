@@ -1,5 +1,5 @@
 import { BoatContext } from '../App.jsx';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 
@@ -18,27 +18,27 @@ function BoatCard(props) {
     }
 
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card>
             <Card.Body>
-                <Card.Title>{props.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Type: {props.type}</Card.Subtitle>
-                <Card.Text>
-                    Status: {props.inService ? "In service" : "Out of service"}
-                </Card.Text>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Button variant='outline-primary' onClick={() => openEditor()}>Edit</Button>
-                        </Col>
-                        <Col>
-                            <Button
-                                variant='outline-danger'
-                                placement='right'
-                                onClick={() => deleteBoat(props.listId)}
-                            >Delete</Button>
-                        </Col>
-                    </Row>
-                </Container>
+                <Row>
+                    <Col><Card.Title>{props.name}</Card.Title></Col>
+                    <Col><Card.Subtitle className="mb-2 text-muted">Type: {props.type}</Card.Subtitle></Col>
+                    <Col>
+                        <Card.Text>
+                            Status: {props.inService ? "In service" : "Out of service"}
+                        </Card.Text>
+                    </Col>
+                    <Col md="auto">
+                        <Button variant='outline-primary' onClick={() => openEditor()}>Edit</Button>
+                    </Col>
+                    <Col md="auto">
+                        <Button
+                            variant='outline-danger'
+                            placement='right'
+                            onClick={() => deleteBoat(props.listId)}
+                        >Delete</Button>
+                    </Col>
+                </Row>
             </Card.Body>
         </Card>
     );
