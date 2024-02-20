@@ -5,13 +5,13 @@ A React app frontend created with Vite.
 This web application was created as a way for me to demonstrate my current knowledge of React. This application allows the user to manage a, stateless, inventory of rowing boats.
 
 ## Currently implemented features
-- None
-
-## Not implemented features
 - Display list of boats
 - ADD new boats
 - DELETE boats
 - UPDATE existing boats
+
+## Not implemented features
+- Integration with API backend
 
 ---
 
