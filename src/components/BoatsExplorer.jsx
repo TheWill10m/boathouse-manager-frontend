@@ -18,7 +18,7 @@ function BoatsExplorer() {
 
 function BoatCards({ boats }) {
     let boatCards = boats.map((boat, index) =>
-        <BoatCard key={index} listId={index} name={boat.name} />
+        <BoatCard key={index} listId={index} name={boat.name} type={boat.type} inService={boat.inService} />
     );
 
     return boatCards;

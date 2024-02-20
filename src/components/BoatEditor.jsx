@@ -8,6 +8,7 @@ function BoatEditor() {
     const { Formik } = formik;
     const schema = yup.object().shape({
         name: yup.string().required(),
+        boatType: yup.string().required(),
     })
 
     const { boatList, setBoatList, editorOpen, setEditorOpen, editorListId } = useContext(BoatContext);
@@ -45,9 +46,9 @@ function BoatEditor() {
                     }}
                     initialValues={{
                         name: boat.name,
-                        isCoxed: false,
-                        boatType: '',
-                        inService: true,
+                        isCoxed: boat.isCoxed,
+                        boatType: boat.type,
+                        inService: boat.inService,
                     }}
                 >
                     {({ handleSubmit, handleChange, values, touched, errors }) => (
@@ -80,14 +81,21 @@ function BoatEditor() {
                                     id='validationFormikIsCoxed' />
                             </Form.Group>
 
-                            <Form.Group controlId='formBoatType' style={{ marginTop: '5px' }}>
+                            <Form.Group controlId='boatType' style={{ marginTop: '5px' }}>
                                 <Form.Label>What type of boat is it?</Form.Label>
-                                <Form.Select aria-label='Default select example'>
-                                    <option>Select boat type</option>
+                                <Form.Select
+                                    aria-label='Default select example'
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.name}
+                                >
+                                    <option value=''>Select boat type</option>
                                     {getBoatTypes(values.isCoxed).map((boatType, index) => (
-                                        <option key={index} id={boatType}>{boatType}</option>
+                                        <option key={index} id={boatType} value={values.boatType}>{boatType}</option>
                                     ))}
                                 </Form.Select>
+                                <Form.Control.Feedback type='invalid'>
+                                    {errors.type}
+                                </Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group controlId='formBoatStatus' style={{ marginTop: '10px' }}>

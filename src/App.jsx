@@ -10,13 +10,22 @@ function App() {
 
   const [boatList, setBoatList] = useState([
     {
-      name: "1"
+      name: "1",
+      isCoxed: false,
+      type: "4x",
+      inService: true,
     },
     {
-      name: "2"
+      name: "2",
+      isCoxed: false,
+      type: "2x",
+      inService: false,
     },
     {
-      name: "3"
+      name: "3",
+      isCoxed: true,
+      type: "8+",
+      inService: true,
     }
   ])
   const [editorOpen, setEditorOpen] = useState(false);
