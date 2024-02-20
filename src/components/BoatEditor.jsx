@@ -8,7 +8,7 @@ function BoatEditor() {
     const { Formik } = formik;
     const schema = yup.object().shape({
         name: yup.string().required(),
-        boatType: yup.string().required(),
+        type: yup.string().required(),
     })
 
     const { boatList, setBoatList, editorOpen, setEditorOpen, editorListId } = useContext(BoatContext);
@@ -25,7 +25,7 @@ function BoatEditor() {
         updatedBoatList[editorListId] = {
             name: values.name,
             isCoxed: values.isCoxed,
-            boatType: values.boatType,
+            type: values.type,
             inService: values.inService
         }
 
@@ -47,7 +47,7 @@ function BoatEditor() {
                     initialValues={{
                         name: boat.name,
                         isCoxed: boat.isCoxed,
-                        boatType: boat.type,
+                        type: boat.type,
                         inService: boat.inService,
                     }}
                 >
@@ -81,14 +81,15 @@ function BoatEditor() {
                                     id='validationFormikIsCoxed' />
                             </Form.Group>
 
-                            <Form.Group controlId='boatType' style={{ marginTop: '5px' }}>
+                            <Form.Group controlId='type' style={{ marginTop: '5px' }}>
                                 <Form.Label>What type of boat is it?</Form.Label>
                                 <Form.Select
                                     aria-label='Default select example'
                                     onChange={handleChange}
                                     isInvalid={!!errors.name}
+                                    value={values.type}
                                 >
-                                    <option value=''>Select boat type</option>
+                                    <option>Select boat type</option>
                                     {getBoatTypes(values.isCoxed).map((boatType, index) => (
                                         <option key={index} id={boatType} value={values.boatType}>{boatType}</option>
                                     ))}
