@@ -20,7 +20,7 @@ function NewBoatForm() {
     }
 
     return (
-        <Container style={{ padding: '10px', border: '2px solid hsl(0, 0%, 20%)', borderRadius: '10px', marginTop: '1%', marginBottom: '5px', width: '50%' }}>
+        <Container style={{ padding: '10px', border: '2px solid hsl(0, 0%, 20%)', borderRadius: '10px', marginTop: '1%', marginBottom: '5px', width: '40%' }}>
             <Formik
                 validationSchema={schema}
                 onSubmit={values =>
