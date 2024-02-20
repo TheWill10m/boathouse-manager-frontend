@@ -11,9 +11,12 @@ function BoatEditor() {
         type: yup.string().required(),
     })
 
-    const { boatList, setBoatList, editorOpen, setEditorOpen, editorListId } = useContext(BoatContext);
-    const boat = boatList[editorListId];
-    const handleClose = () => setEditorOpen(false);
+    const { boatList, setBoatList, editorOpen, setEditorOpen, editorListId, setEditorListId } = useContext(BoatContext);
+    const boat = (editorListId !== -1) ? boatList[editorListId] : {};
+    const handleClose = () => {
+        setEditorListId(-1)
+        setEditorOpen(false)
+    };
 
     function getBoatTypes(isCoxed) {
         let boatTypes = isCoxed ? ['2+', '4+', '8x+', '8+'] : ['1x', '2x', '2-', '4x', '4-']
@@ -41,6 +44,7 @@ function BoatEditor() {
                 <Formik
                     validationSchema={schema}
                     onSubmit={values => {
+                        setEditorListId(-1)
                         saveBoatChanges(values);
                         setEditorOpen(false)
                     }}

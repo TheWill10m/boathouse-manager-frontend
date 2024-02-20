@@ -29,7 +29,7 @@ function App() {
     }
   ])
   const [editorOpen, setEditorOpen] = useState(false);
-  const [editorListId, setEditorListId] = useState(0);
+  const [editorListId, setEditorListId] = useState(-1);
 
   const context = {
     boatList, setBoatList,
